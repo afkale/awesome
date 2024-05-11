@@ -54,7 +54,7 @@ end
 
 
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/ale/.config/awesome/themes/alewm/theme.lua")
+beautiful.init("/home/ale/.config/awesome/themes/aleaw/theme.lua")
 
 -- my widgets 
 local batterywidget = require("./custom/widgets/battery")

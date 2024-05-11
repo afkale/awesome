@@ -1,0 +1,3 @@
+[submodule "aleaw"]
+	path = themes/aleaw
+	url = git@github.com:afkale/aleaw.git
