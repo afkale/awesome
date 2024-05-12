@@ -237,13 +237,8 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
--- {{{ Key bindings
+-- Key bindings
 globalkeys = gears.table.join(
-	awful.key(
-		{ modkey, }, "s",
-		hotkeys_popup.show_help,
-		{ description="show help", group="awesome"}
-	),
 	awful.key(
 		{ modkey, }, "Left",
 		awful.tag.viewprev,
@@ -442,12 +437,15 @@ globalkeys = gears.table.join(
 		end,
 		{ description = "lua execute prompt", group = "awesome"}
 	),
-	-- Menubar
+	-- Prompt
+
+	-- Misc
 	awful.key(
-		{ modkey }, "a",
-		function() menubar.show() end,
-		{ description = "show the menubar", group = "launcher"}
-	)
+		{ modkey, }, "y",
+		function() mykeyboardlayout.next_layout() end,
+		{ description="Next keyboard layout", group="keyboard"}
+	),
+	-- Misc
 )
 
 clientkeys = gears.table.join(
