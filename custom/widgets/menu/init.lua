@@ -28,9 +28,9 @@ powermenu = {
 
 mainmenu = awful.menu({
 	items = {
-		{ "Awesome", awesomemenu },
 		{ "Tools", toolsmenu },
-		{ "Power", powermenu }
+		{ "Awesome", awesomemenu },
+		{ "Power", powermenu },
 	}
 })
 
