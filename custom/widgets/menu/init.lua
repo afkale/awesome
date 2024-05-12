@@ -15,7 +15,8 @@ awesomemenu = {
 
 toolsmenu = {
 	{ "Terminal", function () awful.spawn(terminal) end, },
-	{ "System Resources", function () awful.spawn(terminal .. " -e btop") end, }
+	{ "Network config", function () awful.spawn(terminal.." -e nmtui") end, },
+	{ "System Resources", function () awful.spawn(terminal.." -e btop") end, }
 }
 
 powermenu = {
