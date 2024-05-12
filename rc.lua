@@ -237,7 +237,7 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
--- Key bindings
+-- {{{ Key bindings
 globalkeys = gears.table.join(
 	awful.key(
 		{ modkey, }, "Left",
@@ -444,7 +444,7 @@ globalkeys = gears.table.join(
 		{ modkey, }, "y",
 		function() mykeyboardlayout.next_layout() end,
 		{ description="Next keyboard layout", group="keyboard"}
-	),
+	)
 	-- Misc
 )
 
