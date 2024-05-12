@@ -288,8 +288,7 @@ globalkeys = gears.table.join(
 	awful.key(
 		{ modkey, "Control" }, "s",
 		function()
-			awful.spawn("systemctl suspend")
-			awful.spawn("betterlockscreen -l dim")
+			awful.spawn("betterlockscreen --suspend dim")
 		end,
 		{ description="show help", group="power" }
 	),
