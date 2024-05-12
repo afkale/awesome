@@ -2,7 +2,7 @@ local wibox = require'wibox'
 local awful = require'awful'
 local gears = require'gears'
 local beautiful = require'beautiful'
-
+local naughty = require'naughty'
 
 
 local widget = wibox.widget {
@@ -56,8 +56,8 @@ local function update_battery()
 			end
 
 			local percentage = tonumber(mainLine:match("(%d?%d?%d)%%"))
+			local remaining = mainLine:match("%d?%d?%d%%, (.*)") or "Full"
 			local isCharging = mainLine:match("Charging") == "Charging"
-			local remaining = mainLine:match("%d?%d?%d%%, (.*)") 
 
 			local icon = get_battery_icon(percentage)
 			local textbox = widget:get_children_by_id("text")[1]
