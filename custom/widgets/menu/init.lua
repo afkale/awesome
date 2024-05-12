@@ -21,7 +21,7 @@ toolsmenu = {
 
 powermenu = {
 	{ "Lock", function() awful.spawn("betterlockscreen -l dim") end },
-	{ "Suspend", function() awful.spawn("systemctl suspend") end },
+	{ "Suspend", function() awful.spawn("betterlockscreen -s dim") end },
 	{ "Restart", function() awful.spawn("systemctl reboot") end },
 	{ "Power Off", function() awful.spawn("systemctl poweroff") end }
 }
