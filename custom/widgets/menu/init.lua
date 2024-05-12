@@ -8,29 +8,29 @@ require("./custom/env")
 -- Create a launcher widget and a main menu
 awesomemenu = {
 	{ "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-	{ "Config", editor_cmd .. awesome.conffile },
+	{ "Config",  editor_cmd .. awesome.conffile },
 	{ "Restart", awesome.restart },
-	{ "Quit", function() awesome.quit() end },
+	{ "Quit",    function() awesome.quit() end },
 }
 
 toolsmenu = {
-	{ "Terminal", function () awful.spawn(terminal) end, },
-	{ "Network config", function () awful.spawn(terminal.." -e nmtui") end, },
-	{ "System Resources", function () awful.spawn(terminal.." -e btop") end, }
+	{ "Terminal",         terminal },
+	{ "Network config",   terminal .. " -e nmtui", },
+	{ "System Resources", terminal .. " -e btop", }
 }
 
 powermenu = {
-	{ "Lock", function() awful.spawn("betterlockscreen -l dim") end },
-	{ "Suspend", function() awful.spawn("betterlockscreen -s dim") end },
-	{ "Restart", function() awful.spawn("systemctl reboot") end },
-	{ "Power Off", function() awful.spawn("systemctl poweroff") end }
+	{ "Lock",      "betterlockscreen -l dim" },
+	{ "Suspend",   "betterlockscreen -s dim" },
+	{ "Restart",   "systemctl reboot" },
+	{ "Power Off", "systemctl poweroff" }
 }
 
 mainmenu = awful.menu({
 	items = {
-		{ "Tools", toolsmenu },
+		{ "Tools",   toolsmenu },
 		{ "Awesome", awesomemenu },
-		{ "Power", powermenu },
+		{ "Power",   powermenu },
 	}
 })
 
