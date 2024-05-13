@@ -444,6 +444,16 @@ globalkeys = gears.table.join(
 		{ modkey, }, "y",
 		function() mykeyboardlayout.next_layout() end,
 		{ description="Next keyboard layout", group="keyboard"}
+	),
+	awful.key(
+		{  }, "Print",
+		function() awful.spawn("flameshot full") end,
+		{ description="Full screenshot", group="screenshot"}
+	),
+	awful.key(
+		{ "Shift" }, "Print",
+		function() awful.spawn("flameshot gui") end,
+		{ description="GUI screenshot", group="screenshot"}
 	)
 	-- Misc
 )
@@ -670,7 +680,7 @@ awful.rules.rules = {
 	},
 	{
 		rule = { class = "Alacritty" },
-		properties = { tag = "󰆍" }
+		properties = {  tag = "󰆍" }
 	},
 }
 
