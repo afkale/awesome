@@ -26,7 +26,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 
-
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
@@ -45,22 +44,24 @@ do
 		if in_error then return end
 		in_error = true
 
-		naughty.notify({ preset = naughty.config.presets.critical,
-						 title = "Oops, an error happened!",
-						 text = tostring(err) })
+		naughty.notify({
+			preset = naughty.config.presets.critical,
+			title = "Oops, an error happened!",
+			text = tostring(err)
+		})
 		in_error = false
 	end)
 end
 
 
+-- This is used later as the default terminal and editor to run.
+require("./custom/env")
+
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/ale/.config/awesome/themes/aleaw/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir().."/themes/aleaw/theme.lua")
 
 -- my widgets 
 local batterywidget = require("./custom/widgets/battery")
-
--- This is used later as the default terminal and editor to run.
-require("./custom/env")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -305,33 +306,33 @@ globalkeys = gears.table.join(
 		function ()
 			awful.client.swap.byidx(1)
 		end,
-		{ description = "swap with next client by index", group = "client"}
+		{ description = "swap with next client by index", group = "client" }
 	),
 	awful.key(
 		{ modkey, "Shift" }, "k",
 		function ()
 			awful.client.swap.byidx(-1)
 		end,
-		{ description = "swap with previous client by index", group = "client"}
+		{ description = "swap with previous client by index", group = "client" }
 	),
 	awful.key(
 		{ modkey, "Control" }, "j",
 		function ()
 			awful.screen.focus_relative(1)
 		end,
-		{ description = "focus the next screen", group = "screen"}
+		{ description = "focus the next screen", group = "screen" }
 	),
 	awful.key(
 		{ modkey, "Control" }, "k",
 		function ()
 			awful.screen.focus_relative(-1)
 		end,
-		{ description = "focus the previous screen", group = "screen"}
+		{ description = "focus the previous screen", group = "screen" }
 	),
 	awful.key(
 		{ modkey, }, "u",
 		awful.client.urgent.jumpto,
-		{ description = "jump to urgent client", group = "client"}
+		{ description = "jump to urgent client", group = "client" }
 	),
 	-- Layout manipulation
 	awful.key(
@@ -339,56 +340,56 @@ globalkeys = gears.table.join(
 		function ()
 			awful.tag.incmwfact(0.05)
 		end,
-		{ description = "increase master width factor", group = "layout"}
+		{ description = "increase master width factor", group = "layout" }
 	),
 	awful.key(
 		{ modkey, }, "h",
 		function ()
 			awful.tag.incmwfact(-0.05)
 		end,
-		{ description = "decrease master width factor", group = "layout"}
+		{ description = "decrease master width factor", group = "layout" }
 	),
 	awful.key(
 		{ modkey, "Shift" }, "h",
 		function ()
 			awful.tag.incnmaster(1, nil, true)
 		end,
-		{ description = "increase the number of master clients", group = "layout"}
+		{ description = "increase the number of master clients", group = "layout" }
 	),
 	awful.key(
 		{ modkey, "Shift" }, "l",
 		function ()
 			awful.tag.incnmaster(-1, nil, true)
 		end,
-		{ description = "decrease the number of master clients", group = "layout"}
+		{ description = "decrease the number of master clients", group = "layout" }
 	),
 	awful.key(
 		{ modkey, "Control" }, "h",
 		function ()
 			awful.tag.incncol(1, nil, true)
 		end,
-		{ description = "increase the number of columns", group = "layout"}
+		{ description = "increase the number of columns", group = "layout" }
 	),
 	awful.key(
 		{ modkey, "Control" }, "l",
 		function ()
 			awful.tag.incncol(-1, nil, true)
 		end,
-		{ description = "decrease the number of columns", group = "layout"}
+		{ description = "decrease the number of columns", group = "layout" }
 	),
 	awful.key(
 		{ modkey, }, "space",
 		function ()
 			awful.layout.inc(1)
 		end,
-		{ description = "select next", group = "layout"}
+		{ description = "select next", group = "layout" }
 	),
 	awful.key(
 		{ modkey, "Shift" }, "space",
 		function ()
 			awful.layout.inc(-1)
 		end,
-		{ description = "select previous", group = "layout"}
+		{ description = "select previous", group = "layout" }
 	),
 	awful.key(
 		{ modkey, "Control" }, "n",
@@ -403,19 +404,19 @@ globalkeys = gears.table.join(
 				)
 			end
 		end,
-		{ description = "restore minimized", group = "client"}
+		{ description = "restore minimized", group = "client" }
 	),
 
 	-- Standard program
 	awful.key(
 		{ modkey }, "Return",
 		function () awful.spawn(terminal) end,
-		{ description = "open a terminal", group = "launcher"}
+		{ description = "open a terminal", group = "launcher" }
 	),
 	awful.key(
 		{ modkey }, "b",
 		function () awful.spawn(browser) end,
-		{ description = "open browser", group = "launcher"}
+		{ description = "open browser", group = "launcher" }
 	),
 	-- Standard program
 
@@ -423,7 +424,7 @@ globalkeys = gears.table.join(
 	awful.key(
 		{ modkey }, "r",
 		function () menubar.show() end,
-		{ description = "run prompt", group = "launcher"}
+		{ description = "run prompt", group = "launcher" }
 	),
 	awful.key(
 		{ modkey }, "x",
@@ -435,7 +436,7 @@ globalkeys = gears.table.join(
 				history_path = awful.util.get_cache_dir() .. "/history_eval"
 			}
 		end,
-		{ description = "lua execute prompt", group = "awesome"}
+		{ description = "lua execute prompt", group = "awesome" }
 	),
 	-- Prompt
 
@@ -443,17 +444,27 @@ globalkeys = gears.table.join(
 	awful.key(
 		{ modkey, }, "y",
 		function() mykeyboardlayout.next_layout() end,
-		{ description="Next keyboard layout", group="keyboard"}
+		{ description="Next keyboard layout", group="keyboard" }
 	),
 	awful.key(
 		{  }, "Print",
 		function() awful.spawn("flameshot full") end,
-		{ description="Full screenshot", group="screenshot"}
+		{ description="Full screenshot", group="screenshot" }
 	),
 	awful.key(
 		{ "Shift" }, "Print",
 		function() awful.spawn("flameshot gui") end,
-		{ description="GUI screenshot", group="screenshot"}
+		{ description="GUI screenshot", group="screenshot" }
+	),
+	awful.key(
+		{ }, "XF86MonBrightnessUp",
+		function() awful.spawn("brightnessctl s +1000") end,
+		{ description="Brightness up", group="brightness" }
+	),
+	awful.key(
+		{ }, "XF86MonBrightnessDown",
+		function() awful.spawn("brightnessctl s 1000-") end,
+		{ description="Brightness down", group="brightness" }
 	)
 	-- Misc
 )
